@@ -1,0 +1,44 @@
+{
+  "name": "@punk.bid/sdk",
+  "version": "0.0.1",
+  "description": "SDK to interact with the punk.bid contract",
+  "author": "caapi <punk.bid@proton.me>",
+  "license": "MIT",
+  "main": "lib/src/index.js",
+  "types": "lib/src/index.d.ts",
+  "type": "module",
+  "files": [
+    "lib/src/**/*"
+  ],
+  "bugs": {
+    "url": "https://github.com/punkbid/punkbid-js-sdk/issues"
+  },
+  "homepage": "https://github.com/punkbid/punkbid-js-sdk",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/punkbid/punkbid-js-sdk.git"
+  },
+  "scripts": {
+    "build": "pnpm lint && rm -rf lib && tsc",
+    "lint": "eslint . --ext .ts",
+    "test": "pnpm build; node --test lib/test",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format-check": "prettier --check \"src/**/*.ts\""
+  },
+  "devDependencies": {
+    "@types/node": "^18.13.0",
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "@typescript-eslint/parser": "^5.53.0",
+    "eslint": "^8.24.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-promise": "^6.0.1",
+    "prettier": "^2.7.1",
+    "typescript": "^4.9.5",
+    "zod": "^3.20.6"
+  },
+  "engines": {
+    "node": ">=17.7.0"
+  }
+}
