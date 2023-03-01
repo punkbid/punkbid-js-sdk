@@ -1,6 +1,6 @@
 {
   "name": "@punk.bid/sdk",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "SDK to interact with the punk.bid contract",
   "author": "caapi <punk.bid@proton.me>",
   "license": "MIT",
