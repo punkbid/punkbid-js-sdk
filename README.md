@@ -1,10 +1,20 @@
 # punk.bid
 
-A bid on punk.bid can target any number of punks, which poses a problem since
-blockchain storage is expensive and storing thousands of punk ids for each bid on-chain is not economically viable.
+punk.bid is a permissionless and on-chain bid-side orderbook for CryptoPunks. Bids can target multiple punks at a given price and expiration date. To enter a bid, the bidder provides 5 pieces of data:
 
-this package exposes a Cart class which records the steps taken to fill a bidder's cart. It is then possible to serialize/deserialize those steps
-in a compact data format and compute the cart's content.
+- price
+- expiration date
+- optional name
+- itemsChecksum
+- cartMetadata
+
+The itemsChecksum is the root hash of a merkle tree where each punk included in the bid is a leaf. Thus, the acceptBid function enforces that a punk can be sold into a bid by verifying a merkle proof.
+
+The cartMetadata is used to signal to indexers which punks are included in the bid. It contains all the steps taken to fill the bidder's cart.
+ex: add all hoodies to my cart, remove front beards from my cart, etc...
+That way an indexer can later generate proofs to give as input to an acceptBid call.
+
+this package exposes a Cart class which let you manage your cart, generate the cartMetadata field and rehydrate a cart from a cartMetadata.
 
 There are 2 kinds of steps:
 
@@ -17,6 +27,8 @@ A filter can specify up to:
 - one number of attributes (1 attribute, 5 attributes, etc...)
 - one skin color (Olive skin, Albino skin, etc...)
 - one attribute of each category (see metadata.ts for more info)
+
+ex: add zombies with 1 attribute being a purple cap
 
 ## Installation
 
@@ -39,7 +51,6 @@ cart.add(8);
 // add punk #1 and #10
 cart.add([1, 10]);
 
-// typescript offer strong typing & autocomplete on filter traits
 // add all punks with only 1 attribute: a purple cap
 cart.add(filter(["1 Attribute", "Purple Cap"]));
 
@@ -50,7 +61,6 @@ cart.remove(filter("Alien"));
 const punkIds = cart.computeContent();
 
 // serialize the cart in a compact data format
-// this metadata is used as input when entering a new bid
 const cartMetadata = cart.serialize();
 ```
 
