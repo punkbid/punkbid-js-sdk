@@ -12,9 +12,9 @@ The itemsChecksum is the root hash of a merkle tree where each punk included in 
 
 The cartMetadata is used to signal to indexers which punks are included in the bid. It contains all the steps taken to fill the bidder's cart.
 ex: add all hoodies to my cart, remove front beards from my cart, etc...
-That way an indexer can later generate proofs to give as input to an acceptBid call.
+That way an indexer can later generate proofs and feed it to an acceptBid call.
 
-this package exposes a Cart class which let you manage your cart, generate the cartMetadata field and rehydrate a cart from a cartMetadata.
+This package exposes a Cart class that lets you manage your cart, generates the cartMetadata field and hydrates a cart from a cartMetadata.
 
 There are 2 kinds of steps:
 
